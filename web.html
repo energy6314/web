@@ -30,11 +30,14 @@
               //  .find({title:'lowdb', author:1})
               //  .value()
               //  );
-               db.get('topic')
-              .find({id:2})
-              .assign({title:'MySQL & MariaDB'})
-              .write();
- 
+              //  db.get('topic')
+              // .find({id:2})
+              // .assign({title:'MySQL & MariaDB'})
+              // .write();
+                db.get('topic')
+                .remove({id:2})
+                .write();
+                
             </script>
 
     </head>
