@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> your computer is stupid</title>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="colors.js"></script>
+<script>
+   window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2201710756594400',
+      cookie     : true,                     // Enable cookies to allow the server to access the session.
+      xfbml      : true,                     // Parse social plugins on this webpage.
+      version    : 'v9.0'           // Use this Graph API version for this call.
+    });
+
+   
+    var callback = function(response){
+      console.log(response);
+      if(response.status === 'connected'){
+        documnet.querySelector('#authBtn').value = 'Logout';
+      } else {
+        document.querySelector('#authBtn').value = 'Login';
+      }
+    }
+    FB.getLoginStatus(callback);
+    };
+    
+    (function(d,s,id){
+      var js, fjs =d.getElementsByTagName(s)[0];
+      if(d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+ 
+</script>
+
+</head>
+<body>
+  <input type = "button" id="authBtn" value="checking...">
+<h1><a href="index.html">organic solar cell</a></h1>
+<input type="button" value="night" onclick="nightDayHandler(this)"> 
+<div id="grid">
+<ol id="nav">
+ 
+ </ol>
+
+ <article>
+
+ </article>
+ <script>
+  function fetchPage(name){
+    fetch(name).then(function(response){
+   response.text().then(function(text){
+     document.querySelector('article').innerHTML = text;
+   })
+ });
+  }
+  if(location.hash){
+    fetchPage(location.hash.substr(2));
+  }else {
+    fetchPage('welcome');
+  }
+  fetch('list').then(function(response){
+   response.text().then(function(text){
+     var items = text.split(',');
+     var i = 0;
+     var tags = '';
+     while(i<items.length){
+     var item = items[i];
+     item = item.trim();
+     var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>';
+       tags = tags + tag;
+       i = i+1;
+     }
+     document.querySelector('#nav').innerHTML = tags;
+   })
+ });
+ </script>
+</body>
+</html>

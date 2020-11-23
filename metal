@@ -1,0 +1,1 @@
+Metal is extracting terminal for the charges from active layer.
